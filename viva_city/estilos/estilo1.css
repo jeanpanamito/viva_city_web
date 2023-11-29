@@ -1,0 +1,162 @@
+
+
+/* Reset default styles */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set background color and font */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+/* Center content */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style headings */
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+/* Style paragraphs */
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+header {
+    background-color: rgb(61, 51, 137);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 45px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.login-signup {
+    display: flex;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    color: #d7d6da;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.login-signup button {
+    border-radius: 6px;
+    padding: 10px 20px;
+}
+
+.login-signup button:nth-child(1) {
+    background-color: rgb(255, 255, 255);
+    color: #3D3389;
+}
+
+.login-signup button:nth-child(2) {
+    background-color: rgb(240, 171, 8);
+    color: rgb(255, 255, 255);
+}
+
+.login-signup button:hover {
+    background-color: #d5d5d8;
+}
+
+/*---------------------------------------*/
+
+/* Minimalist and centered formatting */
+video {
+    display: block;
+    margin: 0 auto;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"],
+.search-bar input[type="date"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #3D3389;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #2c276d;
+}
+
+/*-------------------------*/
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eventos {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card p {
+    margin-top: 10px;
+}
+
+
