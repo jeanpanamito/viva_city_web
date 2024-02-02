@@ -1,0 +1,510 @@
+
+{% extends 'vivacity/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'vivacity/css/style.css' %}">
+<script src="{% static 'vivacity/js/script.js' %}"></script>
+<!-- header section starts  -->
+
+<header class="header">
+
+    <section class="flex">
+
+        <a formaction="{% url 'home' %}" class="logo">
+            <img src="{% static 'vivacity/imag/W LOGO.png' %}" alt="Logo de VivaCity"></i> 
+          </a>
+
+    <div class="icons">
+        <div class="fas fa-user" id="login-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+    <nav class="navbar">
+        <a href="#home">Inicio</a>
+        <a href="#packages">Explora</a>
+        <a href="{% url 'vista' %}">Aventuras</a>
+        <a href="#services">Servicios</a>
+        <a href="#pricing">Planes Empresariales</a>
+        <a href="#contact">Contactanos</a>
+        <a href="#blogs">Eventos</a>
+    </nav>
+
+    <form method="post" action="{% url 'login' %}" class="login-form">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <h2>Hello, {{ user.first_name }}</h2>
+            <div class="sing">
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+                <a href="{% url 'upcoming_trips' %}" class="btn">Upcoming Trips</a>
+            </div>
+        {% else %}
+            <div class="inputBox">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" placeholder="Enter your username" required>
+            </div>
+            <div class="inputBox">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" id="id_password" placeholder="Enter your password" required>
+            </div>
+    
+            <div class="remember">
+                <input type="checkbox" name="remember" id="login-remember">
+                <label for="login-remember">Remember me</label>
+            </div>
+            <div class="sing">
+                <input type="submit" class="btn" value="Login">
+                <a href="{% url 'registro' %}" class="btn">Signup</a>
+            </div>
+        {% endif %}
+    </form>
+    
+
+</header>
+
+<!-- header section ends -->
+
+
+
+<!-- home section starts  -->
+<style>
+    .video-container {
+        position: relative;
+    }
+
+    video {
+        width: 100%;
+        filter: blur(6px); 
+    }
+</style>
+
+<section class="home" id="home">
+    <div class="video-container" data-aos="fade-down">
+        <video id="myVideo" autoplay loop muted playsinline>
+            <source src="{% static 'vivacity/imag/videos/Parque Eólico Villonaco.mp4' %}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        
+        <div class="content-overlay">
+            <div class="content" data-aos="fade-up">
+                <h3>Aventura Inigualable</h3>
+                <p>Descubre Loja, donde la aventura se encuentra en cada rincón. ¡Turismo activo, la evolución que necesitas! Abandona lo tradicional y sumérgete en un sinfín de experiencias sorprendentes. ¡Loja, más que un destino, una emocionante travesía!</p>
+                <a href="#" class="btn">explore now</a>
+            </div>
+        
+            
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el elemento de video
+            var video = document.getElementById('myVideo');
+            video.playbackRate =1.5;
+        });
+        
+    </script>
+    
+    
+
+    
+
+</section>
+
+<!-- home section ends -->
+
+<!-- filter form section starts  -->
+
+<section class="form-container" data-aos="zoom-in">
+
+    <form class="search_form" action="{% url 'search' %}" method="POST">
+
+        {%csrf_token%}
+        <div class="inputBox">
+            <span>Donde quieres ir</span>
+            <input type="text" placeholder="search places" name="place">
+        </div>
+
+        <input type="submit" value="Buscar" class="btn">
+        {% for message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %}
+    </form>
+
+</section>
+
+<!-- filter form section ends -->
+
+
+<!-- packages section starts  -->
+
+<section class="packages" id="packages">
+
+    <h1 class="heading"> Disfruta de lugares, aventura y cultura <span></span> </h1>
+    <div class="slick-slider box-container">
+        <div class="box-container">
+       <!--
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/tamal-menu.jpg' %}" alt="">
+                <h3> <i class="fa-solid fa-utensils" style="color: #fab005;"></i> Mama Lola </h3>
+
+            </div>
+            <div class="content">
+                <div class="price"> Comida <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="#" class="btn"> Mira Mas</a>
+            </div>
+        </div>
+    -->
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/img/banner/banner3.png' %}" alt="">
+                <h3><i class="fas fa-hiking"></i>    Aventuras</h3>
+            </div>
+      
+            <div class="content">
+                <div class="price"> Lugares <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="{% url 'vista' %}" class="btn"> Mira Mas</a>
+            </div>
+        </div>
+<!--
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/evento-imgpeq2.jpeg' %}" alt="">
+                <h3> <i class="fa-solid fa-masks-theater"></i> Teatro Bolivar </h3>
+            </div>
+            <div class="content">
+                <div class="price"> Teatros <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="{% url 'travel_destination'%}" class="btn"> Mira Mas</a>
+            </div>
+        </div>
+    -->
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/hotel.jpeg' %}" alt="">
+                <h3> <i class="fa-solid fa-hotel"></i> Hospedaje </h3>
+            </div>
+            <div class="content">
+                <div class="price"> Hoteles <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="{% url 'list'%}" class="btn"> Mira Mas</a>
+                
+
+            </div>
+        </div>
+<!--
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/artes_vivas.jpeg' %}" alt="">
+                <h3> <i class="fas fa-map-marker-alt"></i> FIAVL </h3>
+            </div>
+            <div class="content">
+                <div class="price"> Eventos <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="#" class="btn"> Mira Mas</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/rutas.jpeg' %}" alt="">
+                <h3> <i class="fa-solid fa-person-hiking"></i> Senderismo Podocarpus </h3>
+            </div>
+            <div class="content">
+                <div class="price"> Deportes <span></span> </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, vitae.</p>
+                <a href="#"  class="btn"> Mira Mas</a>
+            </div>
+        </div>
+ -->
+    </div>
+</div>
+
+</section>
+
+<!-- packages section ends -->
+
+<!-- services section starts  -->
+
+<section class="services" id="services">
+
+    <h1 class="heading"> Obten la inspiración para tu próxima aventura <span></span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="zoom-in">
+            <span>01</span>
+            <i class="fas fa-hotel"></i>
+            <h3>Hoteles adsequibles</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+        <div class="box" data-aos="zoom-in">
+            <span>02</span>
+            <i class="fas fa-plane"></i>
+            <h3>fastest travel</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+        <div class="box" data-aos="zoom-in">
+            <span>03</span>
+            <i class="fas fa-utensils"></i>
+            <h3>food and drinks</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+        <div class="box" data-aos="zoom-in">
+            <span>04</span>
+            <i class="fas fa-globe"></i>
+            <h3>around the world</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+        <div class="box" data-aos="zoom-in">
+            <span>05</span>
+            <i class="fas fa-hiking"></i>
+            <h3>new adventures</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+        <div class="box" data-aos="zoom-in">
+            <span>01</span>
+            <i class="fas fa-bullhorn"></i>
+            <h3>safety guide</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- pricing section starts  -->
+
+<section class="pricing" id="pricing">
+
+    <h1 class="heading"><span>Nuestros Planes empresariales</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="zoom-in-up">
+            <h3> Free Plan </h3>
+            <div class="price">
+                <span>$</span>
+                <span class="amount">00</span>
+                <span>/mo</span>
+            </div>
+            <ul>
+                <li>10 Publicaciones</li>
+                <li>food and drinks</li>
+                <li>safty guide</li>
+                <li>insurance</li>
+                <li>luxury hotel</li>
+            </ul>
+            <a href="#" class="btn">Elige plan free</a>
+        </div>
+
+        <div class="box" data-aos="zoom-in-up">
+            <h3> premium plan </h3>
+            <div class="price">
+                <span>$</span>
+                <span class="amount">90</span>
+                <span>/mo</span>
+            </div>
+            <ul>
+                <li>Publicaciones Ilimitadas</li>
+                <li>food and drinks</li>
+                <li>safty guide</li>
+                <li>insurance</li>
+                <li>luxury hotel</li>
+            </ul>
+            <a href="#" class="btn">Elige plan empresarial </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- pricing section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span>Contáctenos </h1>
+    <form method="post" data-aos="zoom">
+       
+        <div class="inputBox">
+            <input type="text" name="name" placeholder="name" data-aos="fade-up">
+            <input type="email" name="email" placeholder="email" data-aos="fade-up">
+        </div>
+
+        <div class="inputBox">
+            <input type="number" placeholder="number" data-aos="fade-up">
+            <input type="text" placeholder="empresa" data-aos="fade-up">
+            
+        </div>
+
+        <textarea name="" placeholder="your message" id="" cols="30" rows="10" data-aos="fade-up"></textarea>
+        
+        <input type="submit" value="send message" class="btn">
+    </form>
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- blog section starts  -->
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading">Proximos Eventos <span></span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/bar disco.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+                <h3>explore the world now, adventure awaits</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1ero ene, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/eventos.png' %}" alt="">
+            </div>
+            <div class="content">
+                <h3>explore the world now, adventure awaits</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1ero ene, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="{% static 'vivacity/imag/evento-imgpeq2.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+                <h3>explore the world now, adventure awaits</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1ero ene, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- blog section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up">
+            <h3>our branches</h3>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Loja </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Cuenca </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Guayaquil </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Quito </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Machala </a>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-chevron-right"></i> home </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> packages </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> services </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> pricing </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> review </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> contact </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> blogs </a>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#"> <i class="fas fa-envelop"></i> jeanpanamito@gmail.com </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Ecuador, loja 10110 </a>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <h3>follow us</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+        </div>
+
+    </div>
+
+    
+
+</section>
+
+<!-- footer section ends -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener el elemento de video
+        var video = document.getElementById('myVideo');
+
+        // Aumentar la velocidad de reproducción a 1.5x (puedes ajustar según tu preferencia)
+        video.playbackRate = 1.5;
+    });
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+
+<script>
+AOS.init({
+    duration:800,
+    delay:400
+});
+</script>
+
+<script src="{% static 'vivacity/js/script.js' %}">
+    
+</script>
+<script>
+    let navbar = document.querySelector('.navbar')
+    let loginForm = document.querySelector('.login-form')
+
+    document.querySelector('#menu-btn').onclick = () => {
+        navbar.classList.toggle('active');
+        loginForm.classList.remove('active');
+        searchForm.classList.remove('active');
+    }
+
+    document.querySelector('#login-btn').onclick = () => {
+        loginForm.classList.toggle('active');
+        navbar.classList.remove('active');
+        searchForm.classList.remove('active');
+    }
+</script>
+
+
+{% endblock %}

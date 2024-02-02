@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="6;url=/" />
+    <title>Booking Confirmed - Happy Travel</title>
+    <meta name="description" content="Your booking has been confirmed. Stay happy and stay connected with Happy Travel.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Agregar un favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            position: relative;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .airplane {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            animation: airplane-fly 4s ease-in-out forwards;
+        }
+
+        .fa-airplane {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 2.5rem;
+            color: rgb(247, 159, 31);
+        }
+
+        .fa-globe {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #007bff; /* Color azul */
+        }
+
+        @keyframes airplane-fly {
+            0% {
+                transform: translateX(-50%) translateY(0);
+            }
+            30% {
+                transform: translateX(10%) translateY(30%);
+            }
+            60% {
+                transform: translateX(50%) translateY(60%);
+            }
+            80% {
+                transform: translateX(70%) translateY(80%);
+            }
+            100% {
+                transform: translateX(50%) translateY(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Confirmed - Happy Travel</h1>
+        <p>Stay Happy, Stay Connected. Your booking has been confirmed.</p>
+        <div class="airplane">
+            <i class="fas fa-airplane"></i>
+        </div>
+        <i class="fas fa-globe"></i>
+    </div>
+
+    <script>
+        window.onload = function() {
+            document.querySelector('.container').classList.add('show');
+        };
+    </script>
+</body>
+</html>
